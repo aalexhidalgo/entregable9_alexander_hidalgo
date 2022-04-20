@@ -1,13 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    //Paneles
     public GameObject MainMenuPanel;
     public GameObject OptionsPanel;
+
+    //DROPDOWN: Cada skin irá acompañada por una previsualización de esta
+    public Image Skin;
+    public Sprite[] SkinArray;
+    public int CurrentSkin;
+    public TMP_Dropdown SkinDropdown;
+
+    //SLIDER: Se encargará de controlar el volumen de música en el juego
+    private AudioSource GameManagerAudioSource;
+    public Slider SliderVolume;
 
     //Panel principal
 
@@ -41,14 +53,26 @@ public class GameManager : MonoBehaviour
     }
 
     //Dropdown de selección de personajes
-    public void SkinSlection()
+
+    public void SkinSelection()
     {
-        //Que vaya cambiando el sprite del personaje
+       CurrentSkin = SkinDropdown.value;
+       Skin.sprite = SkinArray[CurrentSkin];
+    }
+
+    //Slider de volumen de música
+
+    public void UpdateVolume()
+    {
+        GameManagerAudioSource.volume = SliderVolume.value;
     }
 
     void Start()
     {
         MainMenuPanel.SetActive(true);
         OptionsPanel.SetActive(false);
+
+        GameManagerAudioSource = GetComponent<AudioSource>();
+        Skin = GameObject.Find("Skin").GetComponent<Image>();
     }
 }
