@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject MainMenuPanel;
     public GameObject OptionsPanel;
 
+    //Elementos UI:
+
     //DROPDOWN: Cada skin irá acompañada por una previsualización de esta
     public Image Skin;
     public Sprite[] SkinArray;
@@ -20,6 +22,9 @@ public class GameManager : MonoBehaviour
     //SLIDER: Se encargará de controlar el volumen de música en el juego
     private AudioSource GameManagerAudioSource;
     public Slider SliderVolume;
+
+    //Extra
+    public AudioClip[] AudioVoiceArray;
 
     //Panel principal
 
@@ -52,20 +57,25 @@ public class GameManager : MonoBehaviour
         MainMenuPanel.SetActive(true);
     }
 
-    //Dropdown de selección de personajes
+    //Dropdown de selección de personaje
 
     public void SkinSelection()
     {
        CurrentSkin = SkinDropdown.value;
        Skin.sprite = SkinArray[CurrentSkin];
+
+       //Extra: Actualizar la voz del personaje por el elegido
+
     }
 
-    //Slider de volumen de música
+    //Slider de volumen de música (acompañado de toogle, A MANO!)
 
     public void UpdateVolume()
     {
         GameManagerAudioSource.volume = SliderVolume.value;
     }
+
+    //Extra: Slider + toogle de volumen de efectos de sonido (en este caso voces de los personajes) A MANO!
 
     void Start()
     {
