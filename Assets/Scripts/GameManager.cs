@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public Slider SliderVolume;
 
     //Extra
+    private AudioSource MainCameraAudioSource;
     public AudioClip[] AudioVoiceArray;
 
     //Panel principal
@@ -63,10 +64,15 @@ public class GameManager : MonoBehaviour
     {
        CurrentSkin = SkinDropdown.value;
        Skin.sprite = SkinArray[CurrentSkin];
-
-       //Extra: Actualizar la voz del personaje por el elegido
-
     }
+
+    //Extra: Actualizar la voz del personaje por el elegido
+
+    public void CharactersVoice()
+    {
+        GameManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin]);
+    }
+    
 
     //Slider de volumen de música (acompañado de toogle, A MANO!)
 
@@ -84,5 +90,8 @@ public class GameManager : MonoBehaviour
 
         GameManagerAudioSource = GetComponent<AudioSource>();
         Skin = GameObject.Find("Skin").GetComponent<Image>();
+
+        MainCameraAudioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+        MainCameraAudioSource.PlayOneShot(AudioVoiceArray[0]);
     }
 }

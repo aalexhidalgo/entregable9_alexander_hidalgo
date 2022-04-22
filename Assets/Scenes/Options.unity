@@ -822,16 +822,16 @@ MonoBehaviour:
   SkinDropdown: {fileID: 1373268323}
   SliderVolume: {fileID: 541975158}
   AudioVoiceArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: f3238729de9f9d945a70f403aeb2c637, type: 3}
+  - {fileID: 8300000, guid: 3f2bc25996a7b3740a4766bad49fbafd, type: 3}
+  - {fileID: 8300000, guid: 16bfc21c5fb7d08458e5efdbc8d68010, type: 3}
+  - {fileID: 8300000, guid: 51c7b9a2fcbb1ca4c96b82b91213dbf3, type: 3}
+  - {fileID: 8300000, guid: 098b61fecafa0b94b86cf5895c977560, type: 3}
+  - {fileID: 8300000, guid: 3651979860783dd49a30d6ce373c8a45, type: 3}
+  - {fileID: 8300000, guid: f3238729de9f9d945a70f403aeb2c637, type: 3}
+  - {fileID: 8300000, guid: 43fb9ef5851652c45bacf2c4299767f3, type: 3}
+  - {fileID: 8300000, guid: 6dfb6a0f0a6fc324d9abe712eb40497c, type: 3}
+  - {fileID: 8300000, guid: dbf1095b96adbdb4281685a63dd9686c, type: 3}
 --- !u!4 &339180129
 Transform:
   m_ObjectHideFlags: 0
@@ -3397,7 +3397,7 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: "\xC9ter"
+    - m_Text: Aether
       m_Image: {fileID: 0}
     - m_Text: Amber
       m_Image: {fileID: 21300000, guid: 08958b6674939e64baa22dc4b1dafc38, type: 3}
@@ -4747,7 +4747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xC9ter"
+  m_text: Aether
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8ba3d92e746707f48b59ef4d44886f62, type: 2}
   m_sharedMaterial: {fileID: 2368110737783371092, guid: 8ba3d92e746707f48b59ef4d44886f62, type: 2}
