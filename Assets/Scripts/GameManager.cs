@@ -19,20 +19,23 @@ public class GameManager : MonoBehaviour
     public int CurrentSkin;
     public TMP_Dropdown SkinDropdown;
 
-    //SLIDER: Se encargará de controlar el volumen de música en el juego
+    //SLIDER: Se encargará de controlar el volumen de los efectos de sonido en el juego
     private AudioSource GameManagerAudioSource;
     public Slider SliderVolume;
-
-    //Extra
-    private AudioSource MainCameraAudioSource;
     public AudioClip[] AudioVoiceArray;
 
-    //Panel principal
+    //BOTONES: Nos mostrarán las estadísticas de cada arma al seleccionarlas
+    public TextMeshProUGUI WeaponsStats;
+
+    //EXTRAS: Botones del panel principal, slider de música de fondo + toogle, tanto con script como a mano!
+
+    //PANEL PRINCIPAL
 
     //Iniciaríamos el juego y pasaríamos a la escena de juego
     public void StartButton()
     {
         Debug.Log("Start");
+        //No hay juego jejejejejeje
         SceneManager.LoadScene("Juego");
     }
 
@@ -41,6 +44,9 @@ public class GameManager : MonoBehaviour
     {
         MainMenuPanel.SetActive(false);
         OptionsPanel.SetActive(true);
+
+        //Al abrir el panel se activa automáticamente la voz del personaje preseleccionado, al igual que aparecerá el sprite y la opción en el dropdown
+        GameManagerAudioSource.PlayOneShot(AudioVoiceArray[0], 1.0f);
     }
 
     //Salimos del juego
@@ -50,38 +56,48 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    //Panel de opciones
+    //PANEL DE OPCIONES
 
+    //Volvemos al panel anterior
     public void ReturnButton()
     {
         OptionsPanel.SetActive(false);
         MainMenuPanel.SetActive(true);
+        GameManagerAudioSource.Stop();
     }
 
     //Dropdown de selección de personaje
-
     public void SkinSelection()
     {
        CurrentSkin = SkinDropdown.value;
        Skin.sprite = SkinArray[CurrentSkin];
+        
+       //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
+       GameManagerAudioSource.Stop();
+       GameManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin], 1.0f);
     }
 
-    //Extra: Actualizar la voz del personaje por el elegido
-
-    public void CharactersVoice()
-    {
-        GameManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin]);
-    }
-    
-
-    //Slider de volumen de música (acompañado de toogle, A MANO!)
-
+    //Slider de volumen de efectos de sonido (acompañado de toogle, A MANO!)
     public void UpdateVolume()
     {
         GameManagerAudioSource.volume = SliderVolume.value;
     }
 
-    //Extra: Slider + toogle de volumen de efectos de sonido (en este caso voces de los personajes) A MANO!
+    //Botones que muestran las stats de las ramas
+    public void ShowStats_1()
+    {
+        WeaponsStats.text = "ATQ: 46  DEF: 12 CRIT: 110";
+    }
+
+    public void ShowStats_2()
+    {
+        WeaponsStats.text = "ATQ: 44  DEF: 15 CRIT: 105";
+    }
+
+    public void ShowStats_3()
+    {
+        WeaponsStats.text = "ATQ: 42  DEF: 17 CRIT: 100";
+    }
 
     void Start()
     {
@@ -90,8 +106,5 @@ public class GameManager : MonoBehaviour
 
         GameManagerAudioSource = GetComponent<AudioSource>();
         Skin = GameObject.Find("Skin").GetComponent<Image>();
-
-        MainCameraAudioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
-        MainCameraAudioSource.PlayOneShot(AudioVoiceArray[0]);
     }
 }
