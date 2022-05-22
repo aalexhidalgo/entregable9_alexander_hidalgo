@@ -22,6 +22,7 @@ public class MenuManager : MonoBehaviour
 
     public TextMeshProUGUI DropdownText;
     public string SkinName;
+    public string SkinNameSelected;
 
 
     //SLIDER: Se encargará de controlar el volumen de los efectos de sonido en el juego
@@ -116,12 +117,11 @@ public class MenuManager : MonoBehaviour
         SkinImage.GetComponent<Image>();
         LoadUserOptions();
         SaveUserOptions();
-
     }
 
-    void Update ()
+    void Update()
     {
-        UpdateSkinValue();
+
     }
 
     public void SaveUserOptions()
@@ -140,22 +140,14 @@ public class MenuManager : MonoBehaviour
         if (PlayerPrefs.HasKey("Skin_Selected"))
         {
             CurrentSkin = PlayerPrefs.GetInt("Skin_Selected");
-            UpdateSkinValue();
             SkinName = PlayerPrefs.GetString("Skin_Name");
             UpdateSkinName();
-
         }
     }
 
     public void UpdateSkinName()
     {
-
-        DropdownText.text = SkinName;
-    }
-
-    public void UpdateSkinValue()
-    {
-
+        SkinDropdown.value = CurrentSkin;
         SkinImage.sprite = SkinArray[CurrentSkin];
     }
 }
