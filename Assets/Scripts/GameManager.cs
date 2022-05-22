@@ -11,9 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager sharedInstance;
 
     //Variables a las que vamos a conectar los valores guardados
-    public float VolumeSlider;
-    public int MusicToogle;
-    private AudioSource BackgroundMusic; //Bool
+    
+    //Skin (String)
     public TextMeshProUGUI SkinName;
     public string SkinNameSelected;
 
@@ -24,8 +23,9 @@ public class GameManager : MonoBehaviour
     public int SkinSelected;
     private int EnemySelected;
 
-    //Musica
-
+    //Musica (Float)
+    private AudioSource BackgroundMusic;
+    public float MusicVolumeValue;
 
     private void Awake()
     {
@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         // Aplicamos esos cambios
         UpdatePlayerSkin();
         UpdatePlayerName();
+        UpdatePlayerMusic();
         //Accedemos a la imagen del Rival
         PCSkin.GetComponent<Image>();
         RandomizeRival();
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+
     }
 
     //Randomizamos imagen que elige el rival (cada vez que entramos es un rival distinto)
@@ -75,5 +77,10 @@ public class GameManager : MonoBehaviour
     {
         SkinNameSelected = DataPersistence.PlayerStats.SkinName;
         SkinName.text = SkinNameSelected;      
+    }
+
+    public void UpdatePlayerMusic()
+    {
+        BackgroundMusic.volume = DataPersistence.PlayerStats.VolumeSlider;
     }
 }

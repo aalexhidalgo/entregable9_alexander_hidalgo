@@ -42,9 +42,10 @@ public class DataPersistence : MonoBehaviour
     {
         //Preferencias del Player
         PlayerPrefs.SetInt("Skin_Selected", SkinSelected);
+        PlayerPrefs.SetString("Skin_Name", SkinName);
         PlayerPrefs.SetFloat("Volume_Slider", VolumeSlider);
         PlayerPrefs.SetInt("Music_Toogle", MusicToogle);
-        PlayerPrefs.SetString("Skin_Name", SkinName);
+
     }
 
     public void SaveCounter(int Counter)

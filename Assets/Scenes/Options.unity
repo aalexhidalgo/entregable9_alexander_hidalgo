@@ -215,8 +215,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 339180128}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpdateVolume
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: UpdateSoundVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1745,6 +1745,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2148865d0635ac94191ce75eabfb8151, type: 3}
   - {fileID: 8300000, guid: 956a376b4f37cfe47ab28b48453e94dc, type: 3}
   - {fileID: 8300000, guid: b4de80d9f453e624bb10940c14b49c80, type: 3}
+  SliderBackgroundVolume: {fileID: 541975158}
+  MusicVolumeValue: 0
   WeaponsStats: {fileID: 278231719}
 --- !u!4 &339180129
 Transform:
@@ -2831,10 +2833,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 963194229}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: set_volume
-        m_Mode: 0
+      - m_Target: {fileID: 339180128}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: UpdateBackgroundVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

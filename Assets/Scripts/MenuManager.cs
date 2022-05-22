@@ -28,6 +28,10 @@ public class MenuManager : MonoBehaviour
     public Slider SliderVolume;
     public AudioClip[] AudioVoiceArray;
 
+    private AudioSource MainCameraAudioSource;
+    public Slider SliderBackgroundVolume;
+    public float MusicVolumeValue;
+
     //BOTONES: Nos mostrarán las estadísticas de cada arma al seleccionarlas
     public TextMeshProUGUI WeaponsStats;
 
@@ -87,9 +91,15 @@ public class MenuManager : MonoBehaviour
     }
 
     //Slider de volumen de efectos de sonido (acompañado de toogle, A MANO!)
-    public void UpdateVolume()
+    public void UpdateSoundVolume()
     {
         MenuManagerAudioSource.volume = SliderVolume.value;
+    }
+
+    public void UpdateMusicVolume()
+    {
+        MainCameraAudioSource.volume = SliderBackgroundVolume.value;
+        SliderBackgroundVolume.value = MusicVolumeValue;
     }
 
     //Botones que muestran las stats de las ramas
@@ -117,18 +127,17 @@ public class MenuManager : MonoBehaviour
         SkinImage.GetComponent<Image>();
         LoadUserOptions();
         SaveUserOptions();
+
+        MainCameraAudioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        
-    }
 
     public void SaveUserOptions()
     {
         // Persistencia de datos entre escenas
         DataPersistence.PlayerStats.SkinSelected = CurrentSkin;
         DataPersistence.PlayerStats.SkinName = SkinName;
+        DataPersistence.PlayerStats.VolumeSlider = MusicVolumeValue;
 
         // Persistencia de datos entre partidas
         DataPersistence.PlayerStats.SaveForFutureGames();
@@ -141,8 +150,10 @@ public class MenuManager : MonoBehaviour
         {
             CurrentSkin = PlayerPrefs.GetInt("Skin_Selected");
             SkinName = PlayerPrefs.GetString("Skin_Name");
+            MusicVolumeValue = PlayerPrefs.GetFloat("Volume_Slider");
             UpdateSkinImage();
             UpdateSkinName();
+            UpdateMusic();
         }
     }
 
@@ -156,4 +167,10 @@ public class MenuManager : MonoBehaviour
     {
         DropdownText.text = SkinName;
     }
+    
+    public void UpdateMusic()
+    {
+        MusicVolumeValue = SliderBackgroundVolume.value;
+    }
+    
 }
