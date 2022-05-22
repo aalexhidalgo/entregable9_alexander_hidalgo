@@ -853,8 +853,8 @@ RectTransform:
   m_Father: {fileID: 1753214212}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenuPanel: {fileID: 755291423}
   OptionsPanel: {fileID: 488674564}
-  Skin: {fileID: 367112621}
+  SkinImage: {fileID: 367112621}
   SkinArray:
   - {fileID: 21300000, guid: 85a375e3df56ab349849f57a6731376d, type: 3}
   - {fileID: 21300000, guid: fb0f5d4968f98264d84642c6056706a6, type: 3}
@@ -1731,6 +1731,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7b3702276483fbc45bf4049e9fede56d, type: 3}
   CurrentSkin: 0
   SkinDropdown: {fileID: 1373268323}
+  DropdownText: {fileID: 2131796163}
+  SkinName: 
   SliderVolume: {fileID: 8676071}
   AudioVoiceArray:
   - {fileID: 8300000, guid: 492b0c238c860684298a24a349ae5961, type: 3}
@@ -2510,7 +2512,7 @@ MonoBehaviour:
   VolumeSlider: 0
   MusicToogle: 0
   SkinName: 
-  SkinSelection: 0
+  SkinSelected: 0
   SceneCounter: 0
 --- !u!4 &457723897
 Transform:
@@ -2543,7 +2545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &488674565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3592,7 +3594,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5054,8 +5056,8 @@ RectTransform:
   m_Father: {fileID: 213746663}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7529,7 +7531,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8829,7 +8831,7 @@ GameObject:
   - component: {fileID: 2131796164}
   - component: {fileID: 2131796163}
   m_Layer: 5
-  m_Name: Label
+  m_Name: Texto_DropdownLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,10 +15,14 @@ public class MenuManager : MonoBehaviour
     //Elementos UI:
 
     //DROPDOWN: Cada skin irá acompañada por una previsualización de esta
-    public Image Skin;
+    public Image SkinImage;
     public Sprite[] SkinArray;
     public int CurrentSkin;
     public TMP_Dropdown SkinDropdown;
+
+    public TextMeshProUGUI DropdownText;
+    public string SkinName;
+
 
     //SLIDER: Se encargará de controlar el volumen de los efectos de sonido en el juego
     private AudioSource MenuManagerAudioSource;
@@ -73,11 +77,12 @@ public class MenuManager : MonoBehaviour
     public void SkinSelection()
     {
        CurrentSkin = SkinDropdown.value;
-       Skin.sprite = SkinArray[CurrentSkin];
+       SkinImage.sprite = SkinArray[CurrentSkin];
         
        //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
        MenuManagerAudioSource.Stop();
        MenuManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin], 1.0f);
+
     }
 
     //Slider de volumen de efectos de sonido (acompañado de toogle, A MANO!)
@@ -108,6 +113,49 @@ public class MenuManager : MonoBehaviour
         OptionsPanel.SetActive(false);
 
         MenuManagerAudioSource = GetComponent<AudioSource>();
-        Skin = GameObject.Find("Skin").GetComponent<Image>();
+        SkinImage.GetComponent<Image>();
+        LoadUserOptions();
+        SaveUserOptions();
+
+    }
+
+    void Update ()
+    {
+        UpdateSkinValue();
+    }
+
+    public void SaveUserOptions()
+    {
+        // Persistencia de datos entre escenas
+        DataPersistence.PlayerStats.SkinSelected = CurrentSkin;
+        DataPersistence.PlayerStats.SkinName = SkinName;
+
+        // Persistencia de datos entre partidas
+        DataPersistence.PlayerStats.SaveForFutureGames();
+    }
+
+    public void LoadUserOptions()
+    {
+        // Tal y como lo hemos configurado, si tiene esta clave, entonces tiene todas
+        if (PlayerPrefs.HasKey("Skin_Selected"))
+        {
+            CurrentSkin = PlayerPrefs.GetInt("Skin_Selected");
+            UpdateSkinValue();
+            SkinName = PlayerPrefs.GetString("Skin_Name");
+            UpdateSkinName();
+
+        }
+    }
+
+    public void UpdateSkinName()
+    {
+
+        DropdownText.text = SkinName;
+    }
+
+    public void UpdateSkinValue()
+    {
+
+        SkinImage.sprite = SkinArray[CurrentSkin];
     }
 }

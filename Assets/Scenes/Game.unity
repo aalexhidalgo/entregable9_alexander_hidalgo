@@ -1443,8 +1443,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VolumeSlider: 0
   MusicToogle: 0
-  SkinName: {fileID: 0}
+  SkinName: {fileID: 1743869890}
   Skin: {fileID: 2086418355}
+  PCSkin: {fileID: 322776639}
   SkinArray:
   - {fileID: 21300000, guid: 85a375e3df56ab349849f57a6731376d, type: 3}
   - {fileID: 21300000, guid: fb0f5d4968f98264d84642c6056706a6, type: 3}

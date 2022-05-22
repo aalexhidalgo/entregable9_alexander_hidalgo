@@ -16,7 +16,7 @@ public class DataPersistence : MonoBehaviour
 
     //Dropdown
     public string SkinName;
-    public int SkinSelection = 0;
+    public int SkinSelected;
 
     public int SceneCounter = 0;
 
@@ -41,7 +41,7 @@ public class DataPersistence : MonoBehaviour
     public void SaveForFutureGames()
     {
         //Preferencias del Player
-        PlayerPrefs.SetInt("Skin_Selection", SkinSelection);
+        PlayerPrefs.SetInt("Skin_Selected", SkinSelected);
         PlayerPrefs.SetFloat("Volume_Slider", VolumeSlider);
         PlayerPrefs.SetInt("Music_Toogle", MusicToogle);
         PlayerPrefs.SetString("Skin_Name", SkinName);

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     //Skin (INT)
     public Image Skin;
-    private Image PCSkin;
+    public Image PCSkin;
     public Sprite[] SkinArray;
     public int SkinSelected;
     private int EnemySelected;
@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour
     {
         BackgroundMusic = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         // Aplicamos esos cambios
-        //ApplyUserOptions();
+        ApplyUserOptions();
 
         //Accedemos a la imagen del Rival
-        PCSkin = GameObject.Find("PCImage").GetComponent<Image>();
+        PCSkin.GetComponent<Image>();
         RandomizeRival();
     }
 
@@ -56,14 +56,12 @@ public class GameManager : MonoBehaviour
         PCSkin.sprite = SkinArray[EnemySelected];
     }
 
-    /*public void ApplyUserOptions()
+    public void ApplyUserOptions()
     {
-        VolumeSlider = DataPersistence.PlayerStats.VolumeSlider;
-        MusicToogle = DataPersistence.PlayerStats.MusicToogle;
-        SkinSelected = DataPersistence.PlayerStats.SkinSelection;
         SkinName.text = DataPersistence.PlayerStats.SkinName;
+        SkinSelected = DataPersistence.PlayerStats.SkinSelected;
 
         //Musica (activar/desactivar) BOOL
     }
-    */
+
 }
