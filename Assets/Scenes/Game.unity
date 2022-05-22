@@ -1444,6 +1444,7 @@ MonoBehaviour:
   VolumeSlider: 0
   MusicToogle: 0
   SkinName: {fileID: 1743869890}
+  SkinNameSelected: 
   Skin: {fileID: 2086418355}
   PCSkin: {fileID: 322776639}
   SkinArray:

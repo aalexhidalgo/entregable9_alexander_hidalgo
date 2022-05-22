@@ -1731,9 +1731,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7b3702276483fbc45bf4049e9fede56d, type: 3}
   CurrentSkin: 0
   SkinDropdown: {fileID: 1373268323}
-  DropdownText: {fileID: 0}
+  DropdownText: {fileID: 2131796163}
   SkinName: 
-  SkinNameSelected: 
   SliderVolume: {fileID: 8676071}
   AudioVoiceArray:
   - {fileID: 8300000, guid: 492b0c238c860684298a24a349ae5961, type: 3}
