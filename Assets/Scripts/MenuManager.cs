@@ -78,9 +78,10 @@ public class MenuManager : MonoBehaviour
     {
        CurrentSkin = SkinDropdown.value;
        SkinImage.sprite = SkinArray[CurrentSkin];
-        
-       //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
-       MenuManagerAudioSource.Stop();
+       SkinName = DropdownText.text;
+
+        //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
+        MenuManagerAudioSource.Stop();
        MenuManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin], 1.0f);
 
     }

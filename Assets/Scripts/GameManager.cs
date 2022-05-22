@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerName()
     {
-        SkinName.text = SkinNameSelected;
         SkinNameSelected = DataPersistence.PlayerStats.SkinName;
+        SkinName.text = SkinNameSelected;      
     }
 }
