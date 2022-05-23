@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,18 @@ public class GameManager : MonoBehaviour
     private AudioSource BackgroundMusic;
     public float MusicVolumeValue;
 
+    //Escenas
+    public TextMeshProUGUI ActualSesion;
+    public TextMeshProUGUI LastSesion;
+    public int Actual;
+    public int Last;
+
+    public void ReturnButton()
+    {
+        SceneManager.LoadScene("Options");
+        DataPersistence.PlayerStats.ActualSesion++;
+        DataPersistence.PlayerStats.SaveForFutureGames();
+    }
 
     private void Awake()
     {
@@ -48,6 +61,7 @@ public class GameManager : MonoBehaviour
 
         //Si no hemos aplicado cambios
         SkinSelected = 0;
+        SkinName.text = SkinNameSelected;
 
         // Aplicamos esos cambios
         UpdatePlayerSkin();
@@ -57,6 +71,8 @@ public class GameManager : MonoBehaviour
         //Accedemos a la imagen del Rival
         PCSkin.GetComponent<Image>();
         RandomizeRival();
+
+        UpdateCounter();
     }
 
     public void UpdatePlayerSkin()
@@ -85,6 +101,14 @@ public class GameManager : MonoBehaviour
         {
             BackgroundMusic.Pause();
         }
+    }
+
+    public void UpdateCounter()
+    {
+        Actual = DataPersistence.PlayerStats.ActualSesion;
+        ActualSesion.text = $"{Actual}";
+        Last = DataPersistence.PlayerStats.LastSesion;
+        LastSesion.text = $"{Last}";
     }
 
     /*EXTRA: Cada vez que entramos es peleamos contra un rival distinto (máquina) por defecto 

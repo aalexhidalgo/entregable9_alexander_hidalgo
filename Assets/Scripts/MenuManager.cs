@@ -40,6 +40,12 @@ public class MenuManager : MonoBehaviour
     public int IntToggleMusic;
     public bool BoolToggleMusic;
 
+    //CONTADORES ESCENAS
+    public TextMeshProUGUI ActualSesion;
+    public TextMeshProUGUI LastSesion;
+    public int Actual;
+    public int Last;
+
     //BOTONES: Nos mostrarán las estadísticas de cada arma al seleccionarlas
     public TextMeshProUGUI WeaponsStats;
 
@@ -52,6 +58,8 @@ public class MenuManager : MonoBehaviour
     {
         //En esta escena se muestran las opciones que hemos elegido previamente en el menú de opciones
         SceneManager.LoadScene("Game");
+        DataPersistence.PlayerStats.ActualSesion++;
+
         //Guardamos los datos que hemos cambiado en el menú de opciones
         DataPersistence.PlayerStats.SaveForFutureGames();
     }
@@ -157,7 +165,6 @@ public class MenuManager : MonoBehaviour
 
         MainCameraAudioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         UpdateValue();
-
     }
 
     void Update()
@@ -172,6 +179,9 @@ public class MenuManager : MonoBehaviour
         DataPersistence.PlayerStats.SkinName = SkinName;
         DataPersistence.PlayerStats.VolumeSlider = MusicVolumeValue;
         DataPersistence.PlayerStats.MusicToggle = IntToggleMusic;
+        DataPersistence.PlayerStats.ActualSesion = Actual;
+        DataPersistence.PlayerStats.LastSesion = Last;
+
 
         // Persistencia de datos entre partidas
         DataPersistence.PlayerStats.SaveForFutureGames();
@@ -186,9 +196,14 @@ public class MenuManager : MonoBehaviour
             SkinName = PlayerPrefs.GetString("Skin_Name");
             MusicVolumeValue = PlayerPrefs.GetFloat("Volume_Slider");
             IntToggleMusic = PlayerPrefs.GetInt("Music_Toggle");
+            Last = PlayerPrefs.GetInt("Last_Sesion");
+            LastSesion.text = ($"{Last}");
+            Actual = PlayerPrefs.GetInt("Actual_Sesion");
+            ActualSesion.text = ($"{Actual}");
+
             UpdateSkinImage();
             UpdateSkinName();
-            UpdateIntMusic();   
+            UpdateIntMusic();
 
         }
     }
@@ -221,5 +236,5 @@ public class MenuManager : MonoBehaviour
             BackgroundMusicToggle.GetComponent<Toggle>().isOn = false;
         }
     }
-    
+
 }

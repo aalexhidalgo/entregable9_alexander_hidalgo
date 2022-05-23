@@ -18,7 +18,8 @@ public class DataPersistence : MonoBehaviour
     public string SkinName;
     public int SkinSelected;
 
-    public int SceneCounter = 0;
+    public int ActualSesion = 0;
+    public int LastSesion = 0;
 
     void Awake()
     {
@@ -37,11 +38,6 @@ public class DataPersistence : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        SkinName = "Aether";
-    }
-
     public void SaveForFutureGames()
     {
         //Preferencias del Player
@@ -49,12 +45,17 @@ public class DataPersistence : MonoBehaviour
         PlayerPrefs.SetString("Skin_Name", SkinName);
         PlayerPrefs.SetFloat("Volume_Slider", VolumeSlider);
         PlayerPrefs.SetInt("Music_Toggle", MusicToggle);
+        PlayerPrefs.SetInt("Actual_Sesion", ActualSesion);
+        PlayerPrefs.SetInt("Last_Sesion", LastSesion);
 
     }
 
-    public void SaveCounter(int Counter)
+    //EXTRA:
+    public void OnApplicationQuit()
     {
-        //Contador veces que entramos y salimos
-        SceneCounter = Counter;
+        LastSesion = DataPersistence.PlayerStats.ActualSesion;
+        DataPersistence.PlayerStats.ActualSesion = 0;
+        SaveForFutureGames();
     }
+
 }
