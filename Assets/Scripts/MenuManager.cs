@@ -98,11 +98,14 @@ public class MenuManager : MonoBehaviour
         CurrentSkin = SkinDropdown.value;
         SkinImage.sprite = SkinArray[CurrentSkin];
         SkinName = DropdownText.text;
+    }
 
+    //EventTrigger, de tal manera que solamente cuando entremos se escucharán esas voces
+    public void UpdateSkinVoice()
+    {
         //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
         MenuManagerAudioSource.Stop();
         MenuManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin], 1.0f);
-
     }
 
     //Slider de volumen de efectos de sonido (acompañado de toogle, A MANO!)
