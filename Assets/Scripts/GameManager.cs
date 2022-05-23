@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private AudioSource BackgroundMusic;
     public float MusicVolumeValue;
 
+
     private void Awake()
     {
         if (sharedInstance == null)
@@ -51,24 +52,12 @@ public class GameManager : MonoBehaviour
         // Aplicamos esos cambios
         UpdatePlayerSkin();
         UpdatePlayerName();
+        UpdatePlayerMusicVolume();
         UpdatePlayerMusic();
         //Accedemos a la imagen del Rival
         PCSkin.GetComponent<Image>();
         RandomizeRival();
     }
-
-    void Update()
-    {
-
-    }
-
-    //Randomizamos imagen que elige el rival (cada vez que entramos es un rival distinto)
-    public void RandomizeRival()
-    {
-        EnemySelected = Random.Range(0, SkinArray.Length);
-        PCSkin.sprite = SkinArray[EnemySelected];
-    }
-
 
     public void UpdatePlayerSkin()
     {
@@ -82,8 +71,29 @@ public class GameManager : MonoBehaviour
         SkinName.text = SkinNameSelected;      
     }
 
-    public void UpdatePlayerMusic()
+    public void UpdatePlayerMusicVolume()
     {
         BackgroundMusic.volume = DataPersistence.PlayerStats.VolumeSlider;
     }
+    public void UpdatePlayerMusic()
+    {
+        if (DataPersistence.PlayerStats.MusicToggle == 1)
+        {
+            BackgroundMusic.UnPause();
+        }
+        else
+        {
+            BackgroundMusic.Pause();
+        }
+    }
+
+    /*EXTRA: Cada vez que entramos es peleamos contra un rival distinto (máquina) por defecto 
+    o bien podemos hacer un "Shuffle" para pelear contra otro enemigo de manera aleatoria*/
+
+    public void RandomizeRival()
+    {
+        EnemySelected = Random.Range(0, SkinArray.Length);
+        PCSkin.sprite = SkinArray[EnemySelected];
+    }
+
 }

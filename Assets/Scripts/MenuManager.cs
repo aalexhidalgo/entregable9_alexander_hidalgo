@@ -15,11 +15,13 @@ public class MenuManager : MonoBehaviour
     //Elementos UI:
 
     //DROPDOWN: Cada skin irá acompañada por una previsualización de esta
+    //INT
     public Image SkinImage;
     public Sprite[] SkinArray;
     public int CurrentSkin;
     public TMP_Dropdown SkinDropdown;
 
+    //STRING
     public TextMeshProUGUI DropdownText;
     public string SkinName;
 
@@ -28,9 +30,15 @@ public class MenuManager : MonoBehaviour
     public Slider SliderVolume;
     public AudioClip[] AudioVoiceArray;
 
+    //FLOAT
     private AudioSource MainCameraAudioSource;
     public Slider SliderBackgroundVolume;
     public float MusicVolumeValue;
+
+    //BOOL
+    public Toggle BackgroundMusicToggle;
+    public int IntToggleMusic;
+    public bool BoolToggleMusic;
 
     //BOTONES: Nos mostrarán las estadísticas de cada arma al seleccionarlas
     public TextMeshProUGUI WeaponsStats;
@@ -42,7 +50,6 @@ public class MenuManager : MonoBehaviour
     //Iniciaríamos el juego y pasaríamos a la escena de juego
     public void StartButton()
     {
-        Debug.Log("Start");
         //En esta escena se muestran las opciones que hemos elegido previamente en el menú de opciones
         SceneManager.LoadScene("Game");
         //Guardamos los datos que hemos cambiado en el menú de opciones
@@ -80,13 +87,13 @@ public class MenuManager : MonoBehaviour
     //Dropdown de selección de personaje
     public void SkinSelection()
     {
-       CurrentSkin = SkinDropdown.value;
-       SkinImage.sprite = SkinArray[CurrentSkin];
-       SkinName = DropdownText.text;
+        CurrentSkin = SkinDropdown.value;
+        SkinImage.sprite = SkinArray[CurrentSkin];
+        SkinName = DropdownText.text;
 
-       //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
-       MenuManagerAudioSource.Stop();
-       MenuManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin], 1.0f);
+        //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
+        MenuManagerAudioSource.Stop();
+        MenuManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin], 1.0f);
 
     }
 
@@ -97,10 +104,27 @@ public class MenuManager : MonoBehaviour
     }
 
     //Slider de volumen de música (acompañado de toogle)
-    public void UpdateMusicVolume()
+    public void UpdateMusic(float Volume)
     {
+        
+        MusicVolumeValue = Volume;
+        MainCameraAudioSource.volume = Volume;
         MainCameraAudioSource.volume = SliderBackgroundVolume.value;
-        SliderBackgroundVolume.value = MusicVolumeValue;
+    }
+
+    //Toggle Background Music
+    public void UpdateBoolToIntMusic()
+    {
+        BoolToggleMusic = BackgroundMusicToggle.GetComponent<Toggle>().isOn;
+
+        if (BoolToggleMusic == true)
+        {
+            IntToggleMusic = 1;
+        }
+        else
+        {
+            IntToggleMusic = 0;
+        }
     }
 
     //Botones que muestran las stats de las ramas
@@ -126,17 +150,20 @@ public class MenuManager : MonoBehaviour
 
         MenuManagerAudioSource = GetComponent<AudioSource>();
         SkinImage.GetComponent<Image>();
+        
         LoadUserOptions();
         SaveUserOptions();
+        
 
         MainCameraAudioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+        UpdateValue();
+
     }
 
     void Update()
     {
-       
-    }
 
+    }
 
     public void SaveUserOptions()
     {
@@ -144,6 +171,7 @@ public class MenuManager : MonoBehaviour
         DataPersistence.PlayerStats.SkinSelected = CurrentSkin;
         DataPersistence.PlayerStats.SkinName = SkinName;
         DataPersistence.PlayerStats.VolumeSlider = MusicVolumeValue;
+        DataPersistence.PlayerStats.MusicToggle = IntToggleMusic;
 
         // Persistencia de datos entre partidas
         DataPersistence.PlayerStats.SaveForFutureGames();
@@ -157,9 +185,11 @@ public class MenuManager : MonoBehaviour
             CurrentSkin = PlayerPrefs.GetInt("Skin_Selected");
             SkinName = PlayerPrefs.GetString("Skin_Name");
             MusicVolumeValue = PlayerPrefs.GetFloat("Volume_Slider");
+            IntToggleMusic = PlayerPrefs.GetInt("Music_Toggle");
             UpdateSkinImage();
             UpdateSkinName();
-            //UpdateMusic();
+            UpdateIntMusic();   
+
         }
     }
 
@@ -173,15 +203,23 @@ public class MenuManager : MonoBehaviour
     {
         DropdownText.text = SkinName;
     }
-    
-    public void UpdateMusic(float Volume)
+
+    public void UpdateValue()
     {
-        MusicVolumeValue = Volume;
+        SliderBackgroundVolume.value = MusicVolumeValue;
+        MainCameraAudioSource.volume = MusicVolumeValue;
     }
 
-    public void UpdateActiveMusic()
+    public void UpdateIntMusic()
     {
-
+        if (IntToggleMusic == 1)
+        {
+            BackgroundMusicToggle.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            BackgroundMusicToggle.GetComponent<Toggle>().isOn = false;
+        }
     }
     
 }

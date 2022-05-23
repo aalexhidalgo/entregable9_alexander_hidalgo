@@ -12,7 +12,7 @@ public class DataPersistence : MonoBehaviour
 
     //Musica general (no sonido personajes)
     public float VolumeSlider;
-    public int MusicToogle; //(bool, activamos 1, desactivamos 0)
+    public int MusicToggle; //(bool, activamos 1, desactivamos 0)
 
     //Dropdown
     public string SkinName;
@@ -48,7 +48,7 @@ public class DataPersistence : MonoBehaviour
         PlayerPrefs.SetInt("Skin_Selected", SkinSelected);
         PlayerPrefs.SetString("Skin_Name", SkinName);
         PlayerPrefs.SetFloat("Volume_Slider", VolumeSlider);
-        PlayerPrefs.SetInt("Music_Toogle", MusicToogle);
+        PlayerPrefs.SetInt("Music_Toggle", MusicToggle);
 
     }
 
