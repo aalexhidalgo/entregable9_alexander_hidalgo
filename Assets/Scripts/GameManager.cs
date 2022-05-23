@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
         //Accedemos a la imagen del personaje elegido
         Skin.GetComponent<Image>();
 
+        //Si no hemos aplicado cambios
+        SkinSelected = 0;
+
         // Aplicamos esos cambios
         UpdatePlayerSkin();
         UpdatePlayerName();

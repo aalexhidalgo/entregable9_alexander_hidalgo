@@ -37,6 +37,10 @@ public class DataPersistence : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SkinName = "Aether";
+    }
 
     public void SaveForFutureGames()
     {

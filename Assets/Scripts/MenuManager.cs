@@ -84,8 +84,8 @@ public class MenuManager : MonoBehaviour
        SkinImage.sprite = SkinArray[CurrentSkin];
        SkinName = DropdownText.text;
 
-        //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
-        MenuManagerAudioSource.Stop();
+       //Extra: Actualizamos las voces de los personajes al que hemos seleccionado
+       MenuManagerAudioSource.Stop();
        MenuManagerAudioSource.PlayOneShot(AudioVoiceArray[CurrentSkin], 1.0f);
 
     }
@@ -96,6 +96,7 @@ public class MenuManager : MonoBehaviour
         MenuManagerAudioSource.volume = SliderVolume.value;
     }
 
+    //Slider de volumen de música (acompañado de toogle)
     public void UpdateMusicVolume()
     {
         MainCameraAudioSource.volume = SliderBackgroundVolume.value;
@@ -131,6 +132,11 @@ public class MenuManager : MonoBehaviour
         MainCameraAudioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
+    void Update()
+    {
+       
+    }
+
 
     public void SaveUserOptions()
     {
@@ -153,7 +159,7 @@ public class MenuManager : MonoBehaviour
             MusicVolumeValue = PlayerPrefs.GetFloat("Volume_Slider");
             UpdateSkinImage();
             UpdateSkinName();
-            UpdateMusic();
+            //UpdateMusic();
         }
     }
 
@@ -168,9 +174,14 @@ public class MenuManager : MonoBehaviour
         DropdownText.text = SkinName;
     }
     
-    public void UpdateMusic()
+    public void UpdateMusic(float Volume)
     {
-        MusicVolumeValue = SliderBackgroundVolume.value;
+        MusicVolumeValue = Volume;
+    }
+
+    public void UpdateActiveMusic()
+    {
+
     }
     
 }
